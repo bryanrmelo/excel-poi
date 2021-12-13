@@ -1,20 +1,19 @@
 package br.edu.ifrs.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import br.edu.ifrs.model.Aluno;
 import br.edu.ifrs.model.Turma;
+import br.edu.ifrs.utils.ExcelUtils;
 
 public class RegistroService {
 
 	private static final Scanner sc = new Scanner(System.in);
 
-	private List<Aluno> alunos = new ArrayList<>();
+	private List<Aluno> alunos = carregarAlunos();
 
-	private Set<Turma> turmas = new HashSet<>();
+	private List<Turma> turmas = carregarTurmas();
 
 	public void criarAluno() {
 		Aluno aluno = new Aluno();
@@ -39,6 +38,22 @@ public class RegistroService {
 
 		alunos.add(aluno);
 
+	}
+
+	private List<Turma> carregarTurmas() {
+		return ExcelUtils.lerExcel();
+	}
+
+	private List<Aluno> carregarAlunos() {
+		List<Aluno> alunosJuntos = new ArrayList<>();
+
+		List<Turma> turmas = ExcelUtils.lerExcel();
+		for (Turma turma : turmas) {
+			for (Aluno aluno : turma.getAlunos()) {
+				alunosJuntos.add(aluno);
+			}
+		}
+		return alunosJuntos;
 	}
 
 	public void mostrarTodosAlunos() {

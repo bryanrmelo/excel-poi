@@ -19,6 +19,7 @@ public class MenuUtil {
 			System.out.println("(5) - Mostrar alunos");
 			System.out.println("(6) - Mostrar turmas");
 			System.out.println("(7) - Mostrar aluno por turma");
+			System.out.println("(8) - Salvar planilha");
 			System.out.println("(0) - Sair");
 
 			int op = sc.nextInt();

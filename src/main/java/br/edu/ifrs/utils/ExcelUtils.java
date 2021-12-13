@@ -1,9 +1,11 @@
 package br.edu.ifrs.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -13,8 +15,55 @@ import br.edu.ifrs.model.Turma;
 
 public class ExcelUtils {
 
-	public static Map<Turma, Aluno> lerExcel() {
-		return null;
+	public static List<Turma> lerExcel() {
+
+		List<Turma> turmas = new ArrayList<>();
+
+		try {
+			FileInputStream file = new FileInputStream(new File("planilha.xlsx"));
+
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+			int numeroPagina = 0;
+
+			while (workbook.getNumberOfSheets() > numeroPagina) {
+
+				List<Aluno> alunos = new ArrayList<>();
+
+				XSSFSheet sheet = workbook.getSheetAt(numeroPagina);
+
+				Iterator<Row> rowIterator = sheet.iterator();
+				rowIterator.next();
+				while (rowIterator.hasNext()) {
+
+					Aluno aluno = new Aluno();
+
+					Row row = rowIterator.next();
+					aluno.setId((long) row.getCell(0).getNumericCellValue());
+					aluno.setNome(row.getCell(1).getStringCellValue());
+					aluno.setNotaPrimeiroTrimestre(row.getCell(2).getNumericCellValue());
+					aluno.setNotaSegundoTrimestre(row.getCell(3).getNumericCellValue());
+					aluno.setNotaTerceiroTrimestre(row.getCell(4).getNumericCellValue());
+
+					alunos.add(aluno);
+
+				}
+
+				Turma turma = new Turma();
+
+				turma.setNome(sheet.getSheetName());
+				turma.setAlunos(alunos);
+
+				turmas.add(turma);
+
+				numeroPagina++;
+			}
+			return turmas;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public static void escreverExcel(XSSFWorkbook workbook, List<Turma> turmas) {
