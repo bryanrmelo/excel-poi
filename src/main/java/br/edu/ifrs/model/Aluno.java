@@ -6,25 +6,24 @@ public class Aluno {
 
 	private String nome;
 
-	private Double nota_primeiro_trimestre;
+	private double notaPrimeiroTrimestre;
 
-	private Double nota_segundo_trimestre;
+	private double notaSegundoTrimestre;
 
-	private Double nota_terceiro_trimestre;
+	private double notaTerceiroTrimestre;
 
-	private Double nota_exame;
+	private double notaExame;
 
 	public Aluno() {
 	}
 
-	public Aluno(long id, String nome, Double nota_primeiro_trimestre, Double nota_segundo_trimestre, Double nota_terceiro_trimestre,
-					Double nota_exame) {
+	public Aluno(long id, String nome, double notaPrimeiroTrimestre, double notaSegundoTrimestre, double notaTerceiroTrimestre, double notaExame) {
 		this.id = id;
 		this.nome = nome;
-		this.nota_primeiro_trimestre = nota_primeiro_trimestre;
-		this.nota_segundo_trimestre = nota_segundo_trimestre;
-		this.nota_terceiro_trimestre = nota_terceiro_trimestre;
-		this.nota_exame = nota_exame;
+		this.notaPrimeiroTrimestre = notaPrimeiroTrimestre;
+		this.notaSegundoTrimestre = notaSegundoTrimestre;
+		this.notaTerceiroTrimestre = notaTerceiroTrimestre;
+		this.notaExame = notaExame;
 	}
 
 	public Aluno(long id, String nome) {
@@ -48,36 +47,36 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public Double getNotaPrimeiroTrimestre() {
-		return nota_primeiro_trimestre;
+	public double getNotaPrimeiroTrimestre() {
+		return notaPrimeiroTrimestre;
 	}
 
-	public void setNotaPrimeiroTrimestre(Double nota_primeiro_trimestre) {
-		this.nota_primeiro_trimestre = nota_primeiro_trimestre;
+	public void setNotaPrimeiroTrimestre(Double notaPrimeiroTrimestre) {
+		this.notaPrimeiroTrimestre = notaPrimeiroTrimestre;
 	}
 
-	public Double getNotaSegundoTrimestre() {
-		return nota_segundo_trimestre;
+	public double getNotaSegundoTrimestre() {
+		return notaSegundoTrimestre;
 	}
 
-	public void setNotaSegundoTrimestre(Double nota_segundo_trimestre) {
-		this.nota_segundo_trimestre = nota_segundo_trimestre;
+	public void setNotaSegundoTrimestre(Double notaSegundoTrimestre) {
+		this.notaSegundoTrimestre = notaSegundoTrimestre;
 	}
 
-	public Double getNotaTerceiroTrimestre() {
-		return nota_terceiro_trimestre;
+	public double getNotaTerceiroTrimestre() {
+		return notaTerceiroTrimestre;
 	}
 
-	public void setNota_terceiro_trimestre(Double nota_terceiro_trimestre) {
-		this.nota_terceiro_trimestre = nota_terceiro_trimestre;
+	public void setNotaTerceiroTrimestre(Double notaTerceiroTrimestre) {
+		this.notaTerceiroTrimestre = notaTerceiroTrimestre;
 	}
 
-	public Double getNota_exame() {
-		return nota_exame;
+	public double getNotaExame() {
+		return notaExame;
 	}
 
-	public void setNota_exame(Double nota_exame) {
-		this.nota_exame = nota_exame;
+	public void setNotaExame(Double notaExame) {
+		this.notaExame = notaExame;
 	}
 
 	@Override
