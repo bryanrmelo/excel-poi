@@ -45,10 +45,12 @@ public class MenuUtil {
 									if (op == 7) {
 										registroService.mostrarAlunosPorTurma();
 									} else
-										if (op == 0) {
-											break;
-
-										}
+										if (op == 8) {
+											registroService.salvarPlanilha();
+										} else
+											if (op == 0) {
+												break;
+											}
 		}
 
 	}

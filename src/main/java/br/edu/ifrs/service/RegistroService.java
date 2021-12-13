@@ -1,8 +1,12 @@
 package br.edu.ifrs.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import br.edu.ifrs.model.Aluno;
 import br.edu.ifrs.model.Turma;
 import br.edu.ifrs.utils.ExcelUtils;
@@ -150,6 +154,18 @@ public class RegistroService {
 	public void mostrarAlunosPorTurma() {
 		for (Turma turma : turmas) {
 			System.out.println(turma.getNome() + " " + turma.getAlunos());
+		}
+
+	}
+
+	public void salvarPlanilha() {
+		FileInputStream file;
+		try {
+			file = new FileInputStream(new File("planilha.xlsx"));
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			ExcelUtils.escreverExcel(workbook, turmas);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
