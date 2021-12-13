@@ -1,8 +1,6 @@
 package br.edu.ifrs.service;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,13 +30,13 @@ public class RegistroService {
 		aluno.setNotaPrimeiroTrimestre(sc.nextDouble());
 
 		System.out.println("N2 do aluno");
-		aluno.setNotaPrimeiroTrimestre(sc.nextDouble());
-
-		System.out.println("N3 do aluno");
 		aluno.setNotaSegundoTrimestre(sc.nextDouble());
 
-		System.out.println("Exame do aluno");
+		System.out.println("N3 do aluno");
 		aluno.setNotaTerceiroTrimestre(sc.nextDouble());
+
+		System.out.println("Exame do aluno");
+		aluno.setNotaExame(sc.nextDouble());
 
 		alunos.add(aluno);
 
@@ -159,12 +157,11 @@ public class RegistroService {
 	}
 
 	public void salvarPlanilha() {
-		FileInputStream file;
 		try {
-			file = new FileInputStream(new File("planilha.xlsx"));
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
-			ExcelUtils.escreverExcel(workbook, turmas);
-		} catch (IOException e) {
+			File file = new File("planilha.xlsx");
+			file.delete();
+			ExcelUtils.escreverExcel(new XSSFWorkbook(), turmas);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

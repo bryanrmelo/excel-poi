@@ -2,6 +2,7 @@ package br.edu.ifrs.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -60,6 +61,8 @@ public class ExcelUtils {
 			}
 			return turmas;
 
+		} catch (FileNotFoundException e) {
+			return new ArrayList<Turma>();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -121,6 +124,16 @@ public class ExcelUtils {
 		Cell cellMedia = row.createCell(6);
 		double media = (aluno.getNotaPrimeiroTrimestre() + aluno.getNotaSegundoTrimestre() + aluno.getNotaTerceiroTrimestre()) / 3;
 		cellMedia.setCellValue(media);
+
+		Cell cellAprovacao = row.createCell(7);
+		if (media >= 7) {
+			cellAprovacao.setCellValue("Aprovado");
+		} else
+			if ((media + aluno.getNotaExame()) / 2 > 5) {
+				cellAprovacao.setCellValue("Aprovado com exame");
+			} else {
+				cellAprovacao.setCellValue("Reprovado");
+			}
 
 	}
 
