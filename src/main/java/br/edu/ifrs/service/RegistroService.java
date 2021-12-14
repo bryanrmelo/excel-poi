@@ -35,8 +35,10 @@ public class RegistroService {
 		System.out.println("N3 do aluno");
 		aluno.setNotaTerceiroTrimestre(sc.nextDouble());
 
-		System.out.println("Exame do aluno");
-		aluno.setNotaExame(sc.nextDouble());
+		if ((aluno.getNotaPrimeiroTrimestre() + aluno.getNotaSegundoTrimestre() + aluno.getNotaTerceiroTrimestre()) / 3 < 7) {
+			System.out.println("Exame do aluno");
+			aluno.setNotaExame(sc.nextDouble());
+		}
 
 		alunos.add(aluno);
 

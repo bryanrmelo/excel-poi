@@ -81,17 +81,23 @@ public class ExcelUtils {
 				if (rowNum == 0) {
 					criarCabecalho(sheet);
 					rowNum++;
-
-					for (Aluno aluno : turma.getAlunos()) {
-						criarCelula(rowNum, aluno, sheet);
-						rowNum++;
+					try {
+						for (Aluno aluno : turma.getAlunos()) {
+							criarCelula(rowNum, aluno, sheet);
+							rowNum++;
+						}
+					} catch (NullPointerException e) {
+						break;
 					}
 				}
 			}
+
 			FileOutputStream fos = new FileOutputStream(new File("planilha.xlsx"));
 			workbook.write(fos);
 			fos.close();
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		}
 
@@ -129,7 +135,7 @@ public class ExcelUtils {
 		if (media >= 7) {
 			cellAprovacao.setCellValue("Aprovado");
 		} else
-			if ((media + aluno.getNotaExame()) / 2 > 5) {
+			if ((media + aluno.getNotaExame()) / 2 >= 5) {
 				cellAprovacao.setCellValue("Aprovado com exame");
 			} else {
 				cellAprovacao.setCellValue("Reprovado");
@@ -160,6 +166,9 @@ public class ExcelUtils {
 
 		Cell cellMedia = row.createCell(6);
 		cellMedia.setCellValue("Nota Média");
+
+		Cell cellAprovacao = row.createCell(7);
+		cellAprovacao.setCellValue("Aprovação");
 	}
 
 }
